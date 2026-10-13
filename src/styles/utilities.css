@@ -1,0 +1,133 @@
+/* Responsive layout and typography primitives. Work with variants (md:, hover:). */
+
+/* ---------- Containers ---------- */
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility container-prose {
+  width: 100%;
+  max-width: calc(var(--container-prose) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility container-narrow {
+  width: 100%;
+  max-width: calc(var(--container-narrow) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Break a child out of its container to the viewport edges (hero imagery). */
+@utility full-bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+/* ---------- Vertical rhythm ---------- */
+@utility section {
+  padding-block: var(--section-y);
+}
+
+/* ---------- Grids ---------- */
+/* Product listing: 2 -> 3 -> 4 columns, tight horizontal gutters. */
+@utility grid-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--grid-gap-x);
+  row-gap: var(--grid-gap-y);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (width >= 80rem) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Editorial / category tiles: 1 -> 2 columns. */
+@utility grid-editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--grid-gap-x);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Horizontal snap rail for carousels: peeks the next item on mobile. */
+@utility rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 70%;
+  gap: var(--grid-gap-x);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+  }
+
+  @media (width >= 48rem) {
+    grid-auto-columns: calc((100% - 2 * var(--grid-gap-x)) / 3);
+  }
+
+  @media (width >= 80rem) {
+    grid-auto-columns: calc((100% - 3 * var(--grid-gap-x)) / 4);
+  }
+}
+
+/* ---------- Media ---------- */
+/* Neutral well behind product shots so cut-outs sit on a consistent ground. */
+@utility media-well {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+/* ---------- Typography roles ---------- */
+@utility eyebrow {
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+@utility heading-display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: 400;
+}
+
+@utility heading-section {
+  font-family: var(--font-serif);
+  font-size: var(--text-heading);
+  line-height: var(--text-heading--line-height);
+  letter-spacing: var(--text-heading--letter-spacing);
+  font-weight: 400;
+}
+
+/* ---------- Borders ---------- */
+/* Single hairline divider under a row (nav bars, list items, accordions). */
+@utility hairline-b {
+  border-bottom: 1px solid var(--color-line);
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--color-line);
+}

@@ -1,0 +1,136 @@
+/*
+ * Buttons and links. Square corners, solid black or hairline outline,
+ * uppercase tracked labels. Compose: `btn btn-primary btn-lg btn-block`.
+ */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 3rem;
+    padding-inline: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-size: var(--text-label);
+    line-height: var(--text-label--line-height);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition-property: color, background-color, border-color,
+      text-decoration-color;
+    transition-duration: var(--default-transition-duration);
+    transition-timing-function: var(--ease-standard);
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+  }
+
+  /* Solid black. One per view: add to bag, checkout, submit. */
+  .btn-primary {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+
+    &:hover {
+      background-color: var(--color-ink-soft);
+      border-color: var(--color-ink-soft);
+    }
+  }
+
+  /* Hairline outline that inverts on hover. */
+  .btn-secondary {
+    background-color: transparent;
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+
+    &:hover {
+      background-color: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+
+  /* White button for use over imagery. */
+  .btn-inverse {
+    background-color: var(--color-paper);
+    border-color: var(--color-paper);
+    color: var(--color-ink);
+
+    &:hover {
+      background-color: transparent;
+      color: var(--color-paper);
+    }
+  }
+
+  /* Text-only action with underline, same label typography. */
+  .btn-ghost {
+    height: auto;
+    padding-inline: 0;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+
+    &:hover {
+      text-decoration-color: transparent;
+    }
+  }
+
+  /* Square icon-only button: header icons, close, carousel arrows. */
+  .btn-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+  }
+
+  .btn-sm {
+    height: 2.25rem;
+    padding-inline: 1.25rem;
+  }
+
+  .btn-lg {
+    height: 3.5rem;
+    padding-inline: 2.5rem;
+  }
+
+  .btn-block {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Inline text link: underlined at rest, underline fades on hover. */
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: currentColor;
+    transition: text-decoration-color var(--default-transition-duration)
+      var(--ease-standard);
+
+    &:hover {
+      text-decoration-color: transparent;
+    }
+  }
+
+  /* Nav / footer link: plain at rest, underline on hover or when current. */
+  .link-quiet {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--default-transition-duration)
+      var(--ease-standard);
+
+    &:hover,
+    &[aria-current="page"] {
+      text-decoration-color: currentColor;
+    }
+  }
+}
